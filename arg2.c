@@ -13,8 +13,9 @@ int main(int argc, char **argv) {
   struct CacheAlignedInt {
     int value[16];
   };
-  struct CacheAlignedInt *array = malloc(n * sizeof(struct CacheAlignedInt));
-  // omp_set_dynamic(1);
+  struct CacheAlignedInt array[100];
+  // struct CacheAlignedInt *array = malloc(n * sizeof(struct CacheAlignedInt));
+  //  omp_set_dynamic(1);
 
   printf("here1");
   time = omp_get_wtime();
@@ -32,6 +33,6 @@ int main(int argc, char **argv) {
   printf("The sum of %d squares is %d\n", n, sum);
 
   printf("Time Taken: %f\n", time);
-  free(array);
+  // free(array);
   return 0;
 }

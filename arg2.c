@@ -20,13 +20,11 @@ int main(int argc, char **argv) {
 // Parallel Region
 #pragma omp parallel shared(sum) private(i, squares)
   {
-#pragma omp for nowait reduction(+ : sum) schedule(dynamic, auto)
-    {
-      for (i = 1; i < n; i++) {
-        squares.array[i] = i * i;
-        // printf("%d %d\n", i, squares.array[i]);
-        sum += squares.array[i];
-      }
+#pragma omp for nowait reduction(+ : sum) schedule(auto)
+    for (i = 1; i < n; i++) {
+      squares.array[i] = i * i;
+      // printf("%d %d\n", i, squares.array[i]);
+      sum += squares.array[i];
     }
   }
   time = omp_get_wtime();

@@ -14,9 +14,9 @@ int main(int argc, char **argv) {
     int array[ARRAY_SIZE];
   };
   struct Parallel_Friendly_Array squares;
-  omp_set_dynamic(1);
+  // omp_set_dynamic(1);
 
-  omp_get_wtime();
+  time = omp_get_wtime();
 // Parallel Region
 #pragma omp parallel shared(sum) private(i, squares)
   {
@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
       sum += squares.array[i];
     }
   }
-  time = omp_get_wtime();
+  time = omp_get_wtime() - time;
   printf("The sum of %d squares is %d\n", n, sum);
 
   printf("Time Taken: %f\n", time);

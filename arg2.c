@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
   int i = 0;
   int sum = 0;
   double time;
-  n = 500000 // atoi(argv[1]);
+  n = 500000; // atoi(argv[1]);
       struct CacheAlignedInt {
     int value[16];
   };

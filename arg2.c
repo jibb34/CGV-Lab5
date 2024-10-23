@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 
   time = omp_get_wtime();
 // Parallel Region
-#pragma omp parallel shared(sum) private(i, squares)
+#pragma omp parallel shared(sum) private(i, array)
   {
 #pragma omp for nowait reduction(+ : sum) schedule(auto)
     for (i = 1; i < n; i++) {

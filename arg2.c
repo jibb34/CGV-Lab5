@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#define ARRAY_SIZE 500000
 int main(int argc, char **argv) {
   int n;
   int i = 0;
@@ -13,7 +14,7 @@ int main(int argc, char **argv) {
   struct CacheAlignedInt {
     int value[16];
   };
-  struct CacheAlignedInt array[100];
+  struct CacheAlignedInt array[ARRAY_SIZE];
   // struct CacheAlignedInt *array = malloc(n * sizeof(struct CacheAlignedInt));
   //  omp_set_dynamic(1);
 

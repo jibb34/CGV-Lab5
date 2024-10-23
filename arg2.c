@@ -11,9 +11,10 @@ int main(int argc, char **argv) {
   double time;
   n = atoi(argv[1]);
   struct Parallel_Friendly_Array {
-    int array[ARRAY_SIZE];
-  } __attribute__((aligned(CACHE_LINE_SIZE)));
+    int *array;
+  };
   struct Parallel_Friendly_Array squares;
+  squares.array = malloc(4 * n);
   // omp_set_dynamic(1);
 
   time = omp_get_wtime();

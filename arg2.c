@@ -3,16 +3,16 @@
 #include <stdlib.h>
 #include <unistd.h>
 #define ARRAY_SIZE 100
+#define CACHE_LINE_SIZE 64 // HPC has line size of 64
 int main(int argc, char **argv) {
   int n;
   int i = 0;
   int sum = 0;
   double time;
   n = atoi(argv[1]);
-  // int squares[100]; // can this work?
   struct Parallel_Friendly_Array {
     int array[ARRAY_SIZE];
-  };
+  } __attribute__((aligned(CACHE_LINE_SIZE)));
   struct Parallel_Friendly_Array squares;
   // omp_set_dynamic(1);
 

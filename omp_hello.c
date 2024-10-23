@@ -5,7 +5,7 @@
 int main(int argc, char **argv) {
   int tid, nthreads;
   int THREADS = 2;
-
+  double time;
   if (argc == 2) {
     THREADS = atoi(argv[1]);
   } else {
@@ -14,8 +14,9 @@ int main(int argc, char **argv) {
 
   omp_set_num_threads(THREADS);
 
-// start of parallel section
-// Fork a team of threads with each thread having a private tid variable
+  // start of parallel section
+  // Fork a team of threads with each thread having a private tid variable
+  time = omp_get_wtime();
 #pragma omp parallel private(tid)
   {
     tid = omp_get_thread_num();
@@ -28,6 +29,6 @@ int main(int argc, char **argv) {
 
   } // end of parallel section
   // All threads join master thread and terminate
-
+  time = omp_get_wtime();
   return 0;
 } // end main()

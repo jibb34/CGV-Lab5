@@ -9,4 +9,4 @@
 #SBATCH --partition=COMP1680-dev
 
 gcc -fopenmp arg2.c -o arg2.out
-./arg2.out 100
+./arg2.out 500000

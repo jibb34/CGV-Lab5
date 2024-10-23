@@ -1,20 +1,18 @@
 #include <omp.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#define ARRAY_SIZE 100
-#define CACHE_LINE_SIZE 64 // HPC has line size of 64
 int main(int argc, char **argv) {
   int n;
   int i = 0;
   int sum = 0;
   double time;
   n = atoi(argv[1]);
-  struct Parallel_Friendly_Array {
-    int *array;
+  struct CacheAlignedInt {
+    int value[16];
   };
-  struct Parallel_Friendly_Array squares;
-  squares.array = malloc(4 * n);
+  struct CacheAlignedInt *array = malloc(n * sizeof(struct CacheAlignedInt));
   // omp_set_dynamic(1);
 
   time = omp_get_wtime();
@@ -23,14 +21,15 @@ int main(int argc, char **argv) {
   {
 #pragma omp for nowait reduction(+ : sum) schedule(auto)
     for (i = 1; i < n; i++) {
-      squares.array[i] = i * i;
+      array[i].value[0] = i * i;
       // printf("%d %d\n", i, squares.array[i]);
-      sum += squares.array[i];
+      sum += array[i].value[0];
     }
   }
   time = omp_get_wtime() - time;
   printf("The sum of %d squares is %d\n", n, sum);
 
   printf("Time Taken: %f\n", time);
+  free(array);
   return 0;
 }

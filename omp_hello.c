@@ -30,5 +30,6 @@ int main(int argc, char **argv) {
   } // end of parallel section
   // All threads join master thread and terminate
   time = omp_get_wtime();
+  printf("Time Taken: %f", time);
   return 0;
 } // end main()

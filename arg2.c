@@ -9,12 +9,14 @@ int main(int argc, char **argv) {
   int sum = 0;
   double time;
   n = atoi(argv[1]);
+  printf("here1");
   struct CacheAlignedInt {
     int value[16];
   };
   struct CacheAlignedInt *array = malloc(n * sizeof(struct CacheAlignedInt));
   // omp_set_dynamic(1);
 
+  printf("here1");
   time = omp_get_wtime();
 // Parallel Region
 #pragma omp parallel shared(sum) private(i, array)

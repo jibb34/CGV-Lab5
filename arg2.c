@@ -18,16 +18,16 @@ int main(int argc, char **argv) {
 
   printf("here1");
   time = omp_get_wtime();
-  // Parallel Region
-  // #pragma omp parallel shared(sum) private(i, array)
-  //   {
-  // #pragma omp for nowait reduction(+ : sum) schedule(auto)
-  //     for (i = 1; i < n; i++) {
-  //       array[i].value[0] = i * i;
-  //       // printf("%d %d\n", i, squares.array[i]);
-  //       sum += array[i].value[0];
-  //     }
-  //   }
+  //  Parallel Region
+#pragma omp parallel shared(sum) private(i, array)
+  {
+#pragma omp for nowait reduction(+ : sum) schedule(auto)
+    for (i = 1; i < n; i++) {
+      array[i].value[0] = i * i;
+      // printf("%d %d\n", i, squares.array[i]);
+      sum += array[i].value[0];
+    }
+  }
   time = omp_get_wtime() - time;
   printf("The sum of %d squares is %d\n", n, sum);
 

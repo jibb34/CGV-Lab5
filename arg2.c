@@ -7,7 +7,7 @@
 int main(int argc, char **argv) {
   int n;
   int i = 0;
-  int sum = 0;
+  u_int32_t sum = 0;
   double time;
   n = atoi(argv[1]);
   struct CacheAlignedInt {

@@ -5,34 +5,32 @@
 #include <unistd.h>
 #define ARRAY_SIZE 1000
 int main(int argc, char **argv) {
-  int n = atoi(argv[1]);
+  int n;
   int i = 0;
   int sum = 0;
   double time;
   n = atoi(argv[1]);
-  // struct CacheAlignedInt {
-  //   int value[16];
-  // };
+  struct CacheAlignedInt {
+    int value[16];
+  };
   // struct CacheAlignedInt array[ARRAY_SIZE];
-  // struct CacheAlignedInt *array = malloc(n * sizeof(array->value));
-  int *squares = malloc(n * sizeof(int));
-  omp_set_dynamic(1);
+  struct CacheAlignedInt *array = malloc(n * sizeof(struct CacheAlignedInt));
 
   time = omp_get_wtime();
   //  Parallel Region
-#pragma omp parallel shared(sum) private(i, squares)
+#pragma omp parallel shared(sum) private(i, array)
   {
 #pragma omp for nowait reduction(+ : sum) schedule(auto)
     for (i = 1; i < n; i++) {
-      squares[i] = i * i;
+      array[i].value[0] = i * i;
       // printf("%d %d\n", i, squares.array[i]);
-      sum += squares[i];
+      sum += array[i].value[0];
     }
   }
   time = omp_get_wtime() - time;
   printf("The sum of %d squares is %d\n", n, sum);
 
   printf("Time Taken: %f\n", time);
-  free(squares);
+  // free(array);
   return 0;
 }

@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
 #pragma omp for nowait reduction(+ : sum) schedule(auto)
     for (i = 1; i < n; i++) {
       array[i].value[0] = i * i;
-      // printf("%d %d\n", i, squares.array[i]);
+      printf("%d %d\n", i, array[i].value[0]);
       sum += array[i].value[0];
     }
   }

@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#define ARRAY_SIZE 1000
 int main(int argc, char **argv) {
   int n;
   int i = 0;
@@ -21,7 +20,7 @@ int main(int argc, char **argv) {
 #pragma omp parallel shared(sum) firstprivate(n, array)
   {
 #pragma omp for nowait reduction(+ : sum) schedule(auto)
-    for (i = 1; i < n; i++) {
+    for (i = 1; i < n + 1; i++) {
       array[i].value[0] = i * i;
       printf("%d %d\n", i, array[i].value[0]);
       sum += array[i].value[0];

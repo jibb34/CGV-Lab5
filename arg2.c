@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#define ARRAY_SIZE 500000
+#define ARRAY_SIZE 1000
 int main(int argc, char **argv) {
   int n;
   int i = 0;
   int sum = 0;
   double time;
-  n = 500000; // atoi(argv[1]);
-      struct CacheAlignedInt {
+  n = 1000; // atoi(argv[1]);
+  struct CacheAlignedInt {
     int value[16];
   };
   struct CacheAlignedInt array[ARRAY_SIZE];

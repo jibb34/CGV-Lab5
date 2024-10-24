@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #SBATCH --job-name=Arguments
-#SBATCH --output=./arguments.txt
+#SBATCH --output=./timing.csv
 #
 #SBATCH --ntasks=1
 #SBATCH --ntasks-per-node=1

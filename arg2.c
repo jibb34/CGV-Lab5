@@ -5,7 +5,7 @@
 #include <unistd.h>
 #define ARRAY_SIZE 1000
 int main(int argc, char **argv) {
-  int n;
+  int n = atoi(argv[1]);
   int i = 0;
   int sum = 0;
   double time;

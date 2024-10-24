@@ -30,6 +30,6 @@ int main(int argc, char **argv) {
   printf("The sum of %d squares is %d\n", n, sum);
 
   printf("Time Taken: %f\n", time);
-  // free(array);
+  free(array);
   return 0;
 }

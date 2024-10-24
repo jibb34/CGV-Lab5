@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     int value[16];
   };
   // struct CacheAlignedInt array[ARRAY_SIZE];
-  struct CacheAlignedInt *array = malloc(n * sizeof(struct CacheAlignedInt));
+  struct CacheAlignedInt *array = malloc(n * sizeof(array->value));
   omp_set_dynamic(1);
 
   time = omp_get_wtime();

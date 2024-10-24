@@ -27,9 +27,9 @@ int main(int argc, char **argv) {
     }
   }
   time = omp_get_wtime() - time;
-  printf("The sum of %d squares is %d\n", n, sum);
+  // printf("The sum of %d squares is %d\n", n, sum);
 
-  printf("Time Taken: %f\n", time);
+  printf("%f,", time);
   free(array);
   return 0;
 }

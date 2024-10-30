@@ -6,6 +6,7 @@
 #SBATCH --ntasks=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --nodes=1
+#SBATCH --cpus-per-task
 #SBATCH --partition=COMP1680-dev
 
 gcc -fopenmp arg2.c -o arg2.out
